@@ -14,8 +14,10 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProduct;
     private String nameProduct;
+    @ManyToOne
+    @JoinColumn(name ="model_year_id" )
     //năm sản xuất
-    private String modelYear ;
+    private YearProduct modelYear ;
     //động cơ
     private String engine;
     //số dặm
@@ -28,10 +30,13 @@ public class Product {
     private Double price;
     //ngoại thất
     private String exterior;
+    private boolean flagDelete = false;
     @ManyToOne
-
     @JoinColumn(name ="type_product_id" )
     private TypeProduct typeProductId;
+    @ManyToOne
+    @JoinColumn(name ="status_product_id" )
+    private StatusProduct statusProduct;
     @OneToMany(mappedBy = "product")
     private List<ImageProduct> imageProducts;
     @OneToMany(mappedBy = "product")
@@ -41,6 +46,22 @@ public class Product {
     private List<CartDetail> cartDetailList;
 
     public Product() {
+    }
+
+    public boolean isFlagDelete() {
+        return flagDelete;
+    }
+
+    public void setFlagDelete(boolean flagDelete) {
+        this.flagDelete = flagDelete;
+    }
+
+    public StatusProduct getStatusProduct() {
+        return statusProduct;
+    }
+
+    public void setStatusProduct(StatusProduct statusProduct) {
+        this.statusProduct = statusProduct;
     }
 
     public Long getIdProduct() {
@@ -59,13 +80,6 @@ public class Product {
         this.nameProduct = nameProduct;
     }
 
-    public String getModelYear() {
-        return modelYear;
-    }
-
-    public void setModelYear(String modelYear) {
-        this.modelYear = modelYear;
-    }
 
     public String getEngine() {
         return engine;
@@ -141,6 +155,14 @@ public class Product {
 
     public List<CartDetail> getCartDetailList() {
         return cartDetailList;
+    }
+
+    public YearProduct getModelYear() {
+        return modelYear;
+    }
+
+    public void setModelYear(YearProduct modelYear) {
+        this.modelYear = modelYear;
     }
 
     public void setCartDetailList(List<CartDetail> cartDetailList) {

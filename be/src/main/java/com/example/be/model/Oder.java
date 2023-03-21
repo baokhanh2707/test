@@ -16,8 +16,17 @@ public class Oder {
     public Set<OderDetail> oderDetailSet;
     @ManyToOne
     private Customer customer;
+    private boolean flagDelete = false;
 
     public Oder() {
+    }
+
+    public boolean isFlagDelete() {
+        return flagDelete;
+    }
+
+    public void setFlagDelete(boolean flagDelete) {
+        this.flagDelete = flagDelete;
     }
 
     public Long getIdOder() {

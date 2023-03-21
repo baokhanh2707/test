@@ -9,7 +9,7 @@ import java.util.Set;
 public class ImageProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String url;
     @ManyToOne
     @JsonBackReference
@@ -18,11 +18,11 @@ public class ImageProduct {
     public ImageProduct() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
