@@ -4,6 +4,7 @@ import {Product} from '../entity/product';
 import {ActivatedRoute} from '@angular/router';
 import {DetailDto} from '../dto/detail-dto';
 import {Image} from '../dto/image';
+import {ProductInType} from '../dto/product-in-type';
 
 @Component({
   selector: 'app-detail',
@@ -14,16 +15,20 @@ export class DetailComponent implements OnInit {
   productDto: DetailDto = {};
   imageList: Image [] = [];
   image: string | undefined;
-
+  productInType: ProductInType [] = [];
+  idProduct: string | null | undefined;
   constructor(private productService: ProductService, private activatedRoute: ActivatedRoute) {
     this.activatedRoute.paramMap.subscribe(data => {
-      const id = data.get('id');
+      this.idProduct = data.get('id');
       {
-        this.productService.getAllProductById(Number(id)).subscribe(data2 => {
+        this.productService.getAllProductById(Number(this.idProduct)).subscribe(data2 => {
           this.productDto = data2;
           console.log(data);
         });
       }
+      this.productService.getAllProductByIdType(Number(this.idProduct)).subscribe(data3 => {
+        this.productInType = data3;
+      });
     });
 
     this.activatedRoute.paramMap.subscribe(data => {

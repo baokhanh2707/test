@@ -24,6 +24,7 @@ public class CartDetail {
     private boolean flagDeleted = false;
     @Column(columnDefinition = "bit")
     private boolean flagStatus = false;
+    private Double price;
 
     public CartDetail() {
     }
@@ -46,6 +47,30 @@ public class CartDetail {
 
     public Date getCreateDate() {
         return createDate;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public void setCreateDate(Date createDate) {

@@ -2,7 +2,9 @@ package com.example.be.repository;
 
 import com.example.be.dto.ImageByIdDto;
 import com.example.be.dto.ProductDto;
+import com.example.be.dto.ProductInType;
 import com.example.be.dto.ProductInfoById;
+import com.example.be.dto.ProductHomeOne;
 import com.example.be.model.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,4 +37,11 @@ public interface IProductRepository extends JpaRepository<Product, Long> {
     @Query (value = "select image_product.url from product join image_product on image_product.product_id_product = product.id_product where product.id_product = :idProduct",
             countQuery ="select image_product.url from product join image_product on image_product.product_id_product = product.id_product where product.id_product= :idProduct" , nativeQuery = true )
     List<ImageByIdDto>selectImageById(@Param("idProduct") Long idProduct);
+
+    @Query (value = "select product.id_product as idProduct, product.name_product as nameProduct,status_product.name_status_product as nameStatusProduct, image_product.url as url from product join status_product on status_product.id_status_product = product.status_product_id join image_product on image_product.product_id_product = product.id_product where product.type_product_id =(select product.type_product_id from product where product.id_product = :idProduct ) and product.id_product != :idProduct group by product.id_product" ,
+    countQuery = "select product.id_product as idProduct, product.name_product as nameProduct,status_product.name_status_product as nameStatusProduct, image_product.url as url from product join status_product on status_product.id_status_product = product.status_product_id join image_product on image_product.product_id_product = product.id_product where product.type_product_id =(select product.type_product_id from product where product.id_product = :idProduct ) and product.id_product != :idProduct group by product.id_product",nativeQuery = true)
+    List<ProductInType>selectProductByIdType(@Param("idProduct") Long idProduct);
+
+    @Query (value ="select product.id_product as idProduct, product.name_product as nameProduct,image_product.url as url from product join image_product on image_product.product_id_product = product.id_product where product.id_product = 13 group by product.id_product",countQuery = "select product.id_product as idProduct, product.name_product as nameProduct,image_product.url as url from product join image_product on image_product.product_id_product = product.id_product where product.id_product = 13 group by product.id_product",nativeQuery = true)
+    ProductHomeOne selectProduct();
 }

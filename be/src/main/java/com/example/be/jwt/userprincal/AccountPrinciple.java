@@ -19,6 +19,7 @@ public class AccountPrinciple implements UserDetails {
 
     private String email;
 
+
     private String encryptPassword;
 
     private Collection<? extends GrantedAuthority> roles;
@@ -40,6 +41,7 @@ public class AccountPrinciple implements UserDetails {
         this.encryptPassword = encryptPassword;
         this.roles = roles;
     }
+
 
     public static AccountPrinciple build(Account account) {
         System.out.println(account.getRoles());
@@ -81,6 +83,7 @@ public class AccountPrinciple implements UserDetails {
     public String getEmail() {
         return email;
     }
+
 
     public void setEmail(String email) {
         this.email = email;

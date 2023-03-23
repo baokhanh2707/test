@@ -84,6 +84,7 @@ export class TokenService {
     if (this.getToken()) {
       // @ts-ignore
       JSON.parse(localStorage.getItem(ROLE_KEY)).forEach(role => {
+        console.log(role + 'ádasdadasd');
         // @ts-ignore
         this.roles.push(role.authority);
       });

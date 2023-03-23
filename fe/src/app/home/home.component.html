@@ -52,13 +52,18 @@
             <option *ngFor="let year of yearList" [value]="year.nameYear" >{{year.nameYear}}</option>
 
           </select></div>
+
         <div class="col-2" style="float: left">
           <button type="button" class="btn btn-outline-danger"
                   (click)="getAllProduct(typeProductSearch.value,statusProductSearch.value,yearProductSearch.value,this.size,false)"
                   style="width: 200px;height: 51px;margin-bottom: 30px;border-radius: 5px">Tìm kiếm
           </button>
-<!--          <button type="button" (click)="resetSearch()" style="background-color: red">reset</button>-->
         </div>
+        <div class="col-2" style="margin-top: 5px"><div>
+          <button style="float: left" class="btn button-css btn-outline-danger buttonReset" type="button" (click)="resetSearch()">
+            <i class="fa-solid fa-arrows-rotate"></i>
+            Làm mới
+          </button></div></div>
       </div>
     </div>
     <div class="col-1" style="background-color: black"></div>
@@ -111,27 +116,21 @@
       <h1 style="color: #eeeeee;margin-top: 30px">PHÒNG TRƯNG BÀY</h1>
     </div>
   </div>
-  <div class="row" style="background-color: black; margin: 0">
-    <div class="col-6" style=""><img width="105%"
-                                     src="https://www.alainclass.com/wp-content/uploads/2022/05/2013-Pagani-Huayra-BLACK-6019-12-880-599.jpg">
+  <div class="row" style="background-color: black; margin: 0; " >
+    <div class="col-6" style=""><img width="105%"height="100%"
+                                     src="{{oneProductHome.url}}">
     </div>
     <div class="col-6" style="background-color: #484848">
       <div class="row" style="margin: 0">
         <div class="col-2"></div>
         <div class="col-8">
-          <h2 style="text-align: center;margin-top: 100px;color: #eeeeee ">Pagani Huayra</h2>
-          <h4 style="text-align: center;color: #eeeeee">QUÁ KHỨ, HIỆN TẠI VÀ TƯƠNG LAI. MỘT SỰ GIẢI THÍCH VƯỢT
-            THỜI GIAN CỦA
-            NGHỆ THUẬT Ô TÔ. Khái niệm này ra đời vào năm 2003, năm giới thiệu Zonda S Roadster.
-            Như bạn có thể nhớ lại, đầu những năm 2000 là thời kỳ thịnh vượng của thế giới siêu xe.
-            Sự dấn thân của các hãng xe lớn đã góp phần tạo nên sự trỗi dậy của những mẫu xe phi thường như…
+          <h2 style="text-align: center;margin-top: 40px;color: #eeeeee ">{{oneProductHome.nameProduct}}</h2>
+          <h4 style="text-align: center;color: #eeeeee">Mercedes-AMG G63 2021 là dòng xe SUV hạng sang cao cấp được nhập khẩu nguyên chiếc từ Đức của Mercedes Việt Nam, với đầy đủ những công nghệ vượt trội. Thiết kế ngoại thất hầm hố, nội thất được cấu thành từ những vật liệu cao cấp giúp cho không gian nội thất vô cùng sang trọng. Kể từ phiên bản nâng cấp 2018, G63 đã nhanh chóng lọt vào “tầm ngắm” của nhiều đại gia Việt...
             Tiếp tục đọc →</h4>
           <hr>
-          <div style="margin-top: 50px">
-
-
-            <a class="view_details" href="" style="text-decoration: none"><h5 style="color: #eeeeee"><i
-              class="fa-solid fa-eye" style="color: red"></i> Xem chi tiết</h5></a></div>
+          <div style="margin-top: 20px">
+            <a class="view_details" href="" style="text-decoration: none ;" [routerLink]="['/detail',oneProductHome.idProduct]"><h5 style="color: #eeeeee"><i
+              class="fa-solid fa-eye" style="color: red" ></i> Xem chi tiết</h5></a></div>
         </div>
         <div class="col-2"></div>
 

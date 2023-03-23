@@ -94,55 +94,21 @@
   <div class="row" style="margin: 0">
     <div class="col-1" style="background-color: black"></div>
     <div class="col-10" style="background-color: black;text-align: center">
-      <div class="row" style="margin-top: 40px">
-        <div class="col-4">
-          <div class="card" style="box-shadow: 2px 2px 3px #1976d2 ">
+      <div class="row" >
+        <div class="col-4" *ngFor="let data of productInType">
+          <div class="card" style="box-shadow: 2px 2px 3px #1976d2 " >
             <div class="cart-img">
               <img
-                src="https://www.alainclass.com/wp-content/uploads/2023/03/2021-Lamborghini-Aventador-SVJ-Purple-0687-14-972-574.jpg"
+                src="{{data?.url}}"
                 class="card-img-top" alt="...">
             </div>
 
             <div class="card-body" style="background-color: black">
-              <div><h6 class="card-text" style="color: #eeeeee">2021 Lamborghini Aventador</h6></div>
-              <div style="margin-top: 20px"><h5 class="card-title" style="color: #eeeeee">Đã sử dụng</h5>
+              <div><h6 class="card-text" style="color: #eeeeee">{{data?.nameProduct}}</h6></div>
+              <div style="margin-top: 20px"><h5 class="card-title"
+                                                style="color: #eeeeee">{{data?.nameStatusProduct}}</h5>
               </div>
-              <div><a class="btn btn-primary">Chi tiết sản
-                phẩm</a></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="card" style="box-shadow: 2px 2px 3px #1976d2 ">
-            <div class="cart-img">
-              <img
-                src="https://www.alainclass.com/wp-content/uploads/2023/02/2019-Koenigsegg-Regera-Blue-7156-22-972-574.jpg"
-                class="card-img-top" alt="...">
-            </div>
-            <div class="card-body" style="background-color: black">
-              <div><h6 class="card-text" style="color: #eeeeee">Lamborghini Aventador
-              </h6></div>
-              <div style="margin-top: 20px;color: #eeeeee"><h5 class="card-title">Chưa sử dụng</h5>
-              </div>
-              <div><a class="btn btn-primary">Chi tiết sản
-                phẩm</a></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-4">
-          <div class="card" style="box-shadow: 2px 2px 3px #1976d2 ">
-            <div class="cart-img">
-              <img
-                src="https://www.alainclass.com/wp-content/uploads/2023/03/2022-Lamborghini-Aventador-LP-780-4-Ultimae-R-10-972-574.jpg"
-                class="card-img-top" alt="...">
-            </div>
-
-            <div class="card-body" style="background-color: black">
-              <div><h6 class="card-text" style="color: #eeeeee">Koenigsegg Regera</h6></div>
-              <div style="margin-top: 20px;color: #eeeeee"><h5 class="card-title"> Chưa sử dụng</h5>
-              </div>
-              <div><a class="btn btn-primary">Chi tiết sản
+              <div><a (click)="scroll()" [routerLink]="['/detail',data.idProduct]" class="btn btn-primary">Chi tiết sản
                 phẩm</a></div>
             </div>
           </div>

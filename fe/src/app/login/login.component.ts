@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private toast: ToastrService,
               private formBuilder: FormBuilder,
-              private titleService: Title) { }
+              private titleService: Title) {this.titleService.setTitle('Login'); }
 
   ngOnInit(): void {
     this.getFormLogin();
@@ -49,7 +49,10 @@ export class LoginComponent implements OnInit {
             this.tokenService.setEmail(data.email);
             this.tokenService.setIdAccount(data.idAccount);
             this.tokenService.setIdCustomer(data.idCustomer);
-            this.toast.success('Đăng nhập thành công.', 'Thông báo');
+            this.toast.success('Đăng nhập thành công.', 'Thông báo', {
+              timeOut: 3000,
+              extendedTimeOut: 1500
+            });
             location.href = 'http://localhost:4200/';
           }
         }

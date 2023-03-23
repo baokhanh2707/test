@@ -1,7 +1,6 @@
 package com.example.be.dto.acount.response;
-
+import com.example.be.dto.GetIdCustomer;
 import org.springframework.security.core.GrantedAuthority;
-
 import java.util.Collection;
 import java.util.Optional;
 
@@ -13,6 +12,7 @@ public class JwtResponse {
     private String usernameAccount;
     private String email;
     private Collection<? extends GrantedAuthority> roles;
+    private Optional<GetIdCustomer> idCustomer;
 
     public JwtResponse() {
     }
@@ -37,8 +37,26 @@ public class JwtResponse {
         this.usernameAccount = usernameAccount;
         this.idAccount = idAccount;
         this.email = email;
-
     }
+
+    public JwtResponse(String token, String name, Collection<? extends GrantedAuthority> authorities,String usernameAccount, Long idAccount, String email, Optional<GetIdCustomer> idCustomer) {
+        this.token = token;
+        this.name = name;
+        this.roles = authorities;
+        this.idAccount=idAccount;
+        this.email = email;
+        this.idCustomer = idCustomer;
+        this.usernameAccount=usernameAccount;
+    }
+
+
+//    public Optional<GetIdCustomer> getIdCustomer() {
+//        return idCustomer;
+//    }
+//
+//    public void setIdCustomer(Optional<GetIdCustomer> idCustomer) {
+//        this.idCustomer = idCustomer;
+//    }
 
     public Long getIdAccount() {
         return idAccount;

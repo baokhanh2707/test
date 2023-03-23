@@ -4,7 +4,7 @@
     <div class="row" style="text-align: center;margin-top: 60px">
       <div class="col-4">
         <a style="text-decoration: none" class="a" routerLink="/"><h3
-          style="color: #fff;" >Trang chủ</h3></a>
+          style="color: #fff;">Trang chủ</h3></a>
       </div>
       <div class="col-4"><a><h5 style="margin-top: 5px;color: #fff">Giới thiệu</h5></a></div>
       <div class="col-4"><a><h5 style="margin-top: 5px;color: #fff">Tin tức</h5></a></div>
@@ -12,12 +12,64 @@
   </div>
   <div class="col-2" style="text-align: center">
     <a routerLink="/"><img src="../../../assets/B.png" height="150" width="150"/></a></div>
-    <div class="col-4">
+  <div class="col-4">
+
     <div class="row" style="text-align: center;margin-top: 60px">
       <div class="col-4"><a><h5 style="margin-top: 5px;color: #fff">Giới thiệu</h5></a></div>
-      <div class="col-4"><a routerLink="/cart" style="text-decoration: none"><h5 style="margin-top: 5px;color: #fff">Giỏ hàng</h5></a></div>
-      <div class="col-4"><a routerLink="/login" style="text-decoration: none"><h5 style="margin-top: 5px;color: #fff">Đăng nhập</h5></a></div>
+      <div class="col-4"><a routerLink="/cart" style="text-decoration: none"><h5 style="margin-top: 5px;color: #fff">Giỏ
+        hàng</h5></a></div>
+      <div class="col-4">
+        <a *ngIf="!checkLogin" routerLink="/login" style="text-decoration: none"><h5
+          style="margin-top: 5px;color: #fff">Đăng nhập</h5>
+        </a>
+
+        <div *ngIf="roles[0]=='ADMIN' && checkLogin" style="margin-right: 50px">
+          <div class="dropdown">
+
+            <button  class="btn btn-outline-danger" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+               <i class="fa-sharp fa-solid fa-bars"></i> Thông tin
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" >Thông tin cá nhân</a></li>
+              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Quản lý nhân viên</a>
+              </li>
+              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logout" href="#">Đăng xuất</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div *ngIf="roles[0]=='USER' && checkLogin" style="margin-right: 50px">
+          <div class="dropdown">
+            <button class="btn button-css btn-outline-danger" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-sharp fa-solid fa-bars"></i> Thông tin
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" >Thông tin cá nhân</a></li>
+              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Giỏ Hàng</a>
+              </li>
+              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logout" href="#">Đăng xuất</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="col-1"></div>
+</div>
+<div class="modal fade" id="logout" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel1">Đăng xuất</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Bạn chắc chắn muốn đăng xuất!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ bỏ</button>
+        <button type="submit" (click)="logOut()" data-bs-dismiss="modal" class="btn btn-danger">Tiếp tục</button>
+      </div>
+    </div>
+  </div>
 </div>
