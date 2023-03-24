@@ -1,6 +1,7 @@
 package com.example.be.dto;
 
 public interface ProductInfoById {
+    Long getIdProduct();
     String getNameProduct();
     String getEngine();
     String getMileage();

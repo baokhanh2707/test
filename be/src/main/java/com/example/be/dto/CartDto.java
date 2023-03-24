@@ -1,7 +1,7 @@
 package com.example.be.dto;
 
 public interface CartDto {
-    Long getIdCartDetail();
+    Long getIdCardDetail();
     Long getQuantity();
     String getNameProduct();
     String getUrl();
@@ -11,6 +11,6 @@ public interface CartDto {
     String getPhoneNumber();
     String getAddress();
     String getNameCustomer();
-    Long getIdCart();
+    Long getIdCard();
     Double getTotalMoney();
 }

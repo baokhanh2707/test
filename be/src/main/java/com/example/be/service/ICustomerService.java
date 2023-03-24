@@ -6,6 +6,6 @@ import com.example.be.model.Customer;
 import java.util.Optional;
 
 public interface ICustomerService {
-    Optional<GetIdCustomer> findByAccount(String userName);
+    Long  findByAccount(String userName);
     Optional<Customer> findByIdCustomer(Long id);
 }

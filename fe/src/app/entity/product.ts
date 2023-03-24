@@ -12,8 +12,10 @@ export interface Product {
   price?: number;
   exterior?: string;
   flagDelete?: boolean;
-  typeProductId: TypeProduct;
-  modelYear: YearProduct;
-  statusProduct: Status;
+  typeProductId?: TypeProduct;
+  modelYear?: YearProduct;
+  statusProduct?: Status;
+  amountExist?: number;
+
 
 }

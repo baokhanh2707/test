@@ -1,5 +1,6 @@
 export interface Cart {
-  iddCartDetail?: number;
+  amountExist?: number;
+  idCardDetail?: number;
   quantity?: number;
   nameProduct?: string;
   url?: string;
@@ -9,5 +10,5 @@ export interface Cart {
   phoneNumber?: number;
   address?: string;
   nameCustomer?: string;
-  idCart?: number;
+  idCard?: number;
 }

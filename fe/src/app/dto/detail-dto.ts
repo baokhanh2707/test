@@ -1,4 +1,5 @@
 export interface DetailDto {
+  idProduct?: number;
   nameProduct?: string;
   engine?: string;
   mileage?: string;

@@ -42,13 +42,14 @@ public class SecurityController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtProvider.createToken(authentication);
         AccountPrinciple accountPrinciple = (AccountPrinciple) authentication.getPrincipal();
-        Optional<GetIdCustomer> idCustomer = customerService.findByAccount(signInForm.getUsername());
+        Long idCustomer = customerService.findByAccount(signInForm.getUsername());
         return ResponseEntity.ok(new JwtResponse(token,
                 accountPrinciple.getName(),
                 accountPrinciple.getAuthorities(),
                 accountPrinciple.getUsernameAccount(),
                 accountPrinciple.getIdAccount(),
-                accountPrinciple.getEmail(),idCustomer));
+                accountPrinciple.getEmail(),
+                idCustomer));
 
     }
 }

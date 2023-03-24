@@ -1,10 +1,6 @@
 package com.example.be.service.impl;
 
-import com.example.be.dto.ImageByIdDto;
-import com.example.be.dto.ProductDto;
-import com.example.be.dto.ProductInType;
-import com.example.be.dto.ProductInfoById;
-import com.example.be.dto.ProductHomeOne;
+import com.example.be.dto.*;
 import com.example.be.model.Product;
 import com.example.be.repository.IProductRepository;
 import com.example.be.service.IProductService;
@@ -54,5 +50,10 @@ public class ProductService implements IProductService {
     @Override
     public Optional<Product> findByIdProduct(Long idProduct) {
         return productRepository.findById(idProduct);
+    }
+
+    @Override
+    public Optional<AmountProductDto> getAmountExist(Integer id) {
+        return productRepository.getAmountExist(id);
     }
 }

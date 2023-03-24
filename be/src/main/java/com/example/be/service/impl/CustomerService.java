@@ -13,7 +13,7 @@ public class CustomerService implements ICustomerService {
     @Autowired
     private ICustomerRepository customerRepository;
     @Override
-    public Optional<GetIdCustomer> findByAccount(String userName) {
+    public Long findByAccount(String userName) {
         return customerRepository.findByAccount(userName);
     }
 

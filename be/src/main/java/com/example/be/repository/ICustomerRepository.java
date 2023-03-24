@@ -13,5 +13,5 @@ public interface ICustomerRepository extends JpaRepository<Customer,Long> {
     Optional<Customer>findByEmail(String email);
 
     @Query(value = "select customer.id_customer from customer join account on account.id_account = customer.account_id_account where account.username_account =?1",nativeQuery = true)
-    Optional<GetIdCustomer>findByAccount(String userName);
+    Long findByAccount(String userName);
 }

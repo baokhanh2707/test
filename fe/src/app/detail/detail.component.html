@@ -118,3 +118,26 @@
     <div class="col-1" style="background-color: black"></div>
   </div>
 </div>
+
+<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+  <!-- Quantity -->
+  <div class="d-flex mb-4" style="max-width: 300px">
+    <button class="btn btn-primary px-3 me-2" style="width: 45px;height: 45px"
+            (click)="decrease()" [ngClass]="{'disabled': quantity <= 1}">
+      <i class="fas fa-minus"></i>
+    </button>
+
+    <div class="form-outline" >
+      <input   [(ngModel)]="quantity" min="1" max="10" name="quantity" type="number" class="form-control"/>
+      <label class="form-label" style="color: #eeeeee">Số lượng</label>
+    </div>
+
+    <button class="btn btn-primary px-3 ms-2" style="width: 45px;height: 45px"
+            (click)="increase()" [ngClass]="{'disabled': quantity >= 10}">
+      <i class="fas fa-plus"></i>
+    </button>
+    <button (click)="addToCart()" type="button" class="btn btn-primary btn-lg btn-block">
+      Thanh toán
+    </button>
+  </div>
+</div>

@@ -18,6 +18,7 @@ public class Product {
     @JoinColumn(name ="model_year_id" )
     //năm sản xuất
     private YearProduct modelYear ;
+    private Integer amountExist;
     //động cơ
     private String engine;
     //số dặm
@@ -80,6 +81,13 @@ public class Product {
         this.nameProduct = nameProduct;
     }
 
+    public Integer getAmountExist() {
+        return amountExist;
+    }
+
+    public void setAmountExist(Integer amountExist) {
+        this.amountExist = amountExist;
+    }
 
     public String getEngine() {
         return engine;

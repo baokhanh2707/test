@@ -1,5 +1,6 @@
 package com.example.be.controller;
 
+import com.example.be.dto.AmountProductDto;
 import com.example.be.dto.CartDetailDto;
 import com.example.be.dto.CartDto;
 import com.example.be.model.Cart;
@@ -21,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/user/carts")
+@RequestMapping("/api/public/carts")
 @CrossOrigin("*")
 public class CartController {
     @Autowired
@@ -60,11 +61,10 @@ public class CartController {
             cartDetail.setCart(cart);
             cartDetailService.save(cartDetail);
         }
-
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("card/{idCustomer}")
+    @GetMapping("{idCustomer}")
     public ResponseEntity<?> getAllCard(@PathVariable("idCustomer") Long id) {
         List<CartDto> cartDtoList = cartDetailService.getAllCart(id);
         Double totalMoney = cartDetailService.getTotalMoneyCart(id);
@@ -77,5 +77,14 @@ public class CartController {
     public ResponseEntity<?>updateQuantity(@RequestBody CartDetailDto cartDetailDto){
         cartDetailService.updateAmountInCart(cartDetailDto.getQuantity(), cartDetailDto.getIdCartDetail());
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/amount-exist/{idCartDetail}")
+    public ResponseEntity<?> getAmountExist(@PathVariable("idCartDetail") Integer id) {
+        Optional<AmountProductDto> productInfo = productService.getAmountExist(id);
+        if (!productInfo.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(productInfo, HttpStatus.OK);
     }
 }
