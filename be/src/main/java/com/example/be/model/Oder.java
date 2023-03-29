@@ -1,72 +1,97 @@
 package com.example.be.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
 public class Oder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idOder;
-    private String oderDate;
-    private String codeOder;
-    private boolean paymentStatus;
-    private boolean deliveryStatus;
+    private Long idPay;
+    private String codePay;
+    private String namePay;
+    private String addressPay;
+    private String phonePay;
+    private String emailPay;
+    private Double totalCart;
     @OneToMany(mappedBy = "oder")
+    @JsonBackReference
     public Set<OderDetail> oderDetailSet;
     @ManyToOne
     private Customer customer;
     private boolean flagDelete = false;
-
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_date")
+    private Date createDate;
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "modify_date")
+    private Date modifyDate;
+    @Column(columnDefinition = "text")
+    private String note;
     public Oder() {
     }
 
-    public boolean isFlagDelete() {
-        return flagDelete;
+    public Long getIdPay() {
+        return idPay;
     }
 
-    public void setFlagDelete(boolean flagDelete) {
-        this.flagDelete = flagDelete;
+    public void setIdPay(Long idPay) {
+        this.idPay = idPay;
     }
 
-    public Long getIdOder() {
-        return idOder;
+    public String getCodePay() {
+        return codePay;
     }
 
-    public void setIdOder(Long idOder) {
-        this.idOder = idOder;
+    public void setCodePay(String codePay) {
+        this.codePay = codePay;
     }
 
-    public String getOderDate() {
-        return oderDate;
+    public String getNamePay() {
+        return namePay;
     }
 
-    public void setOderDate(String oderDate) {
-        this.oderDate = oderDate;
+    public void setNamePay(String namePay) {
+        this.namePay = namePay;
     }
 
-    public String getCodeOder() {
-        return codeOder;
+    public String getAddressPay() {
+        return addressPay;
     }
 
-    public void setCodeOder(String codeOder) {
-        this.codeOder = codeOder;
+    public void setAddressPay(String addressPay) {
+        this.addressPay = addressPay;
     }
 
-    public boolean isPaymentStatus() {
-        return paymentStatus;
+    public String getPhonePay() {
+        return phonePay;
     }
 
-    public void setPaymentStatus(boolean paymentStatus) {
-        this.paymentStatus = paymentStatus;
+    public void setPhonePay(String phonePay) {
+        this.phonePay = phonePay;
     }
 
-    public boolean isDeliveryStatus() {
-        return deliveryStatus;
+    public String getEmailPay() {
+        return emailPay;
     }
 
-    public void setDeliveryStatus(boolean deliveryStatus) {
-        this.deliveryStatus = deliveryStatus;
+    public void setEmailPay(String emailPay) {
+        this.emailPay = emailPay;
+    }
+
+    public Double getTotalCart() {
+        return totalCart;
+    }
+
+    public void setTotalCart(Double totalCart) {
+        this.totalCart = totalCart;
     }
 
     public Set<OderDetail> getOderDetailSet() {
@@ -83,5 +108,37 @@ public class Oder {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public boolean isFlagDelete() {
+        return flagDelete;
+    }
+
+    public void setFlagDelete(boolean flagDelete) {
+        this.flagDelete = flagDelete;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getModifyDate() {
+        return modifyDate;
+    }
+
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

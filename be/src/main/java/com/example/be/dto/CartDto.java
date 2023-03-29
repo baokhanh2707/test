@@ -13,4 +13,5 @@ public interface CartDto {
     String getNameCustomer();
     Long getIdCard();
     Double getTotalMoney();
+    Integer getAmountExist();
 }

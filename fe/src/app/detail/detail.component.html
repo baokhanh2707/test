@@ -58,6 +58,36 @@
     </div>
     <div class="col-1"></div>
   </div>
+  <div class="row" style="background-color: #484848; margin: 0" >
+    <div class="col-lg-5 col-md-6 mb-4 mb-lg-0"></div>
+    <div class="col-lg-4 col-md-6 mb-4 mb-lg-0" style="margin-left: 65px">
+      <!-- Quantity -->
+      <div class="d-flex mb-4" style="max-width: 300px ;text-align: center" *ngIf="checkLogin">
+        <button class="btn btn-danger px-3 me-2" style="width: 45px;height: 45px"
+                (click)="decrease()" [ngClass]="{'disabled': quantity <= 1}">
+          <i class="fas fa-minus"></i>
+        </button>
+
+        <div class="form-outline" >
+          <input style="text-align: center" [(ngModel)]="quantity" min="1" max="10" name="quantity" type="text" class="form-control"/>
+          <label class="form-label" style="color: #eeeeee  ">Số lượng</label>
+        </div>
+
+        <button class="btn btn-danger px-3 ms-2" style="width: 45px;height: 45px"
+                (click)="increase()" [ngClass]="{'disabled': quantity >= 10}">
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0"></div>
+   <div class="row">
+     <div class="col-2"></div>
+     <div class="col-8"><button *ngIf="checkLogin"  (click)="addToCart()" type="button" class="btn btn-outline-danger btn-lg btn-block"
+                                style="width: 650px;height: 100%; margin-left: 370px ;margin-bottom: 20px">
+       Thêm vào giỏ hàng</button></div>
+     <div class="col-2"></div>
+   </div>
+  </div>
   <div class="row" style="margin: 0">
     <div class="col-12" style="background-color: black"><h2
       style="text-align: center;color: #eeeeee;margin-top: 30px;margin-bottom: 40px">
@@ -94,9 +124,9 @@
   <div class="row" style="margin: 0">
     <div class="col-1" style="background-color: black"></div>
     <div class="col-10" style="background-color: black;text-align: center">
-      <div class="row" >
+      <div class="row">
         <div class="col-4" *ngFor="let data of productInType">
-          <div class="card" style="box-shadow: 2px 2px 3px #1976d2 " >
+          <div class="card" style="box-shadow: 2px 2px 3px #1976d2 ">
             <div class="cart-img">
               <img
                 src="{{data?.url}}"
@@ -119,25 +149,4 @@
   </div>
 </div>
 
-<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-  <!-- Quantity -->
-  <div class="d-flex mb-4" style="max-width: 300px">
-    <button class="btn btn-primary px-3 me-2" style="width: 45px;height: 45px"
-            (click)="decrease()" [ngClass]="{'disabled': quantity <= 1}">
-      <i class="fas fa-minus"></i>
-    </button>
 
-    <div class="form-outline" >
-      <input   [(ngModel)]="quantity" min="1" max="10" name="quantity" type="number" class="form-control"/>
-      <label class="form-label" style="color: #eeeeee">Số lượng</label>
-    </div>
-
-    <button class="btn btn-primary px-3 ms-2" style="width: 45px;height: 45px"
-            (click)="increase()" [ngClass]="{'disabled': quantity >= 10}">
-      <i class="fas fa-plus"></i>
-    </button>
-    <button (click)="addToCart()" type="button" class="btn btn-primary btn-lg btn-block">
-      Thanh toán
-    </button>
-  </div>
-</div>

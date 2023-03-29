@@ -5,6 +5,7 @@ public class CartDetailDto {
     private Long idProduct;
     private Long idCustomer;
     private Long idCartDetail;
+    private Double price;
 
     public CartDetailDto() {
     }
@@ -37,5 +38,13 @@ public class CartDetailDto {
 
     public void setIdCartDetail(Long idCartDetail) {
         this.idCartDetail = idCartDetail;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }

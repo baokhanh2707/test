@@ -12,6 +12,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { PaymentsComponent } from './payments/payments.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FooterComponent,
     DetailComponent,
     CartComponent,
-    LoginComponent
+    LoginComponent,
+    PaymentsComponent
   ],
   imports: [
     BrowserModule,

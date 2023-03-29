@@ -10,5 +10,6 @@ public interface ProductInfoById {
     Double getPrice();
     String getExterior();
     String getNameYear();
+    Integer getAmountExist();
 
 }

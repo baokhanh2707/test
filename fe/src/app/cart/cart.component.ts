@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CartService} from '../service/cart.service';
 import {TokenService} from '../service/token/token.service';
 import {ToastrService} from 'ngx-toastr';
@@ -18,6 +18,7 @@ export class CartComponent implements OnInit {
   amountExist = 0;
   totalMany = 0;
 
+
   constructor(private cartService: CartService,
               private tokenService: TokenService,
               private toastrService: ToastrService,
@@ -33,7 +34,7 @@ export class CartComponent implements OnInit {
     this.cartService.getCartByIdCustomer(this.idCustomer).subscribe(data => {
       this.cartList = data[0];
       this.totalMany = data[1];
-      console.log(data);
+      this.cartService.setCount(this.cartList.length);
     });
   }
 
@@ -50,12 +51,14 @@ export class CartComponent implements OnInit {
         this.cartDetail.quantity = element.quantity;
         this.cartDetail.idCartDetail = idCartDetail;
         this.cartService.updateAmountByCart(this.cartDetail).subscribe(() => {
+          this.getCartList();
         });
       }
     }
   }
 
   increase(idCartDetail: number | undefined): void {
+    console.log(this.cartList);
     for (const element of this.cartList) {
       if (element.idCardDetail === idCartDetail) {
         // @ts-ignore
@@ -69,6 +72,7 @@ export class CartComponent implements OnInit {
         this.cartDetail.quantity = element.quantity;
         this.cartDetail.idCartDetail = idCartDetail;
         this.cartService.updateAmountByCart(this.cartDetail).subscribe(() => {
+          this.getCartList();
         });
       }
     }
@@ -103,6 +107,15 @@ export class CartComponent implements OnInit {
   private getAmountExistProduct(idCartDetail: number | undefined): void {
     this.cartService.getAmountExist(idCartDetail).subscribe(data => {
       this.amountExist = data.amountExist;
+    });
+  }
+
+  deleteByIdCartDetail(): void {
+    this.cartService.deleteCartDetail(this.cartDetail.idCartDetail).subscribe(() => {
+      this.toastrService.success('Xóa thành công', 'Thông báo');
+      this.getCartList();
+    }, error => {
+      this.toastrService.error('Xóa không thành công', 'Thông báo');
     });
   }
 }

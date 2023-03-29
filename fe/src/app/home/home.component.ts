@@ -11,6 +11,12 @@ import {YearProduct} from '../entity/year-product';
 import {error} from '@angular/compiler/src/util';
 import {Title} from '@angular/platform-browser';
 import {ProductOne} from '../dto/product-one';
+import {TokenService} from '../service/token/token.service';
+import {DetailDto} from '../dto/detail-dto';
+import {CartDetail} from '../entity/cart-detail';
+import {CartService} from '../service/cart.service';
+import {Cart} from '../dto/cart.dto';
+import {Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +31,6 @@ export class HomeComponent implements OnInit {
   first: any;
   last: any;
   productPage: Home[] = [];
-  productList: Home[] = [];
   @ViewChild('typeProductSearch') inputType: any;
   @ViewChild('statusProductSearch') inputStatus: any;
   @ViewChild('yearProductSearch') inputYear: any;
@@ -33,9 +38,16 @@ export class HomeComponent implements OnInit {
   statusProduct = '';
   yearProduct = '';
   oneProductHome: ProductOne = {};
+  checkLogin = false;
+  quantity = 1;
+  cartDetail: CartDetail = {};
+  cartList: Cart[] = [];
 
-
-  constructor(private productService: ProductService, private toastrService: ToastrService, private titleService: Title) {
+  constructor(private productService: ProductService, private toastrService: ToastrService, private titleService: Title,
+              private tokenService: TokenService,
+              private cartService: CartService,
+              private router: Router
+  ) {
     this.titleService.setTitle('BK CAR SPORT');
   }
 
@@ -46,11 +58,32 @@ export class HomeComponent implements OnInit {
     this.getTypeProduct();
     this.getProductOneHome();
   }
+
+  addToCart(idProduct: number | undefined, price: number | undefined): void {
+    if (this.tokenService.getToken()) {
+      this.checkLogin = true;
+      this.cartDetail.quantity = this.quantity;
+      this.cartDetail.price = price;
+      this.cartDetail.idProduct = idProduct;
+      this.cartDetail.idCustomer = Number(this.tokenService.getIdCustomer());
+      this.cartService.addToCart(this.cartDetail).subscribe(() => {
+        this.cartService.getCartByIdCustomer(Number(this.tokenService.getIdCustomer())).subscribe(data => {
+          this.cartList = data;
+          this.cartService.setCount(this.cartList.length);
+        });
+        this.toastrService.success('Thêm vào giỏ hàng thành công.', 'Thông báo.');
+      });
+
+    } else {
+      this.toastrService.warning('Bạn phải đăng nhập để tiếp tục.', 'Thông báo.');
+      this.router.navigateByUrl('/login');
+    }
+  }
+
   getProduct(size: number): void {
     this.productService.getProduct(size).subscribe(data => {
       this.productPage = data.content;
       this.first = data.first;
-      console.log(data.last);
       this.last = data.last;
       this.size = data.size;
     });
@@ -66,9 +99,9 @@ export class HomeComponent implements OnInit {
     this.productService.getAllProduct(typeProduct, statusProduct, yearProduct, size).subscribe(data => {
       if (data.content.length !== null) {
         this.productPage = data.content;
+        console.log(data);
         this.first = data.first;
         this.last = data.last;
-        console.log(this.productPage);
         this.size = data.size;
         if ((typeProduct !== '' || statusProduct !== '' || yearProduct !== '') && !flag) {
           this.toastrService.success('Tìm kiếm thành công.', 'Thông Báo');
@@ -104,6 +137,7 @@ export class HomeComponent implements OnInit {
       this.typeList = data;
     });
   }
+
   scroll(): void {
     window.scroll({
       top: 0,
@@ -118,4 +152,6 @@ export class HomeComponent implements OnInit {
     this.inputYear.nativeElement.value = '';
     this.getProduct(this.size);
   }
+
+
 }

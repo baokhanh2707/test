@@ -4,7 +4,9 @@ import com.example.be.dto.CartDto;
 import com.example.be.model.CartDetail;
 import com.example.be.repository.ICartDetailRepository;
 import com.example.be.service.ICartDetailService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,4 +45,15 @@ private ICartDetailRepository cartDetailRepository;
     public CartDetail save(CartDetail cartDetail) {
         return cartDetailRepository.save(cartDetail);
     }
+
+    @Override
+    public void deleteByIdCartDetail(@NotNull Long idCartDetail) {
+        cartDetailRepository.deleteByIdCartDetail(idCartDetail);
+    }
+
+    @Override
+    public CartDetail findByIdCartDetail(@NotNull Long idCartDetail) {
+        return cartDetailRepository.findByIdCartDetail(idCartDetail);
+    }
+
 }

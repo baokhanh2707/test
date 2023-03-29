@@ -9,4 +9,5 @@ idStatusProduct?: number;
 nameStatusProduct?: string;
 id?: number;
 url?: string;
+price?: number;
 }

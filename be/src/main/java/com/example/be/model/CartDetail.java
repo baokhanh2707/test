@@ -1,10 +1,11 @@
 package com.example.be.model;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.Date;
-
+@Where(clause = "flag_deleted = false and flag_status = false")
 @Entity
 public class CartDetail {
     @Id
@@ -15,6 +16,9 @@ public class CartDetail {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_date")
     private Date createDate;
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "modify_date")
     private Date modifyDate;
     @ManyToOne
     private Product product;

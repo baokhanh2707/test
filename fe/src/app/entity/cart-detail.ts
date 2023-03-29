@@ -3,4 +3,5 @@ export interface CartDetail {
   idProduct?: number;
   idCustomer?: number;
   idCartDetail?: number;
+  price?: number;
 }

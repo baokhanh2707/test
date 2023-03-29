@@ -176,4 +176,5 @@ public class Product {
     public void setCartDetailList(List<CartDetail> cartDetailList) {
         this.cartDetailList = cartDetailList;
     }
+
 }

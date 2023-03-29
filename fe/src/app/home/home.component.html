@@ -90,9 +90,11 @@
               <div style="margin-top: 20px"><h5 class="card-title"
                                                 style="color: #eeeeee">{{data.nameStatusProduct}}</h5>
               </div>
-              <div><a [routerLink]="['/detail',data.idProduct]" class="btn btn-primary">Chi tiết sản
+              <div><a [routerLink]="['/detail',data.idProduct]" class="btn btn-outline-primary">Chi tiết sản
                 phẩm</a></div>
             </div>
+            <div style="background-color: black"><button style="margin-bottom: 10px" (click)="addToCart(data.idProduct,data.price)" type="button" class="btn btn-outline-danger btn-lg btn-block" >
+              Thêm vào giỏ hàng</button></div>
           </div>
         </div>
 

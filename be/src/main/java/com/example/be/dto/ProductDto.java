@@ -11,4 +11,6 @@ public interface ProductDto {
     String getNameStatusProduct();
     Long getId();
     String getUrl();
+    Double getPrice();
+
 }

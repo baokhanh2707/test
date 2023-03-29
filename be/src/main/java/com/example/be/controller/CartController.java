@@ -33,6 +33,7 @@ public class CartController {
     private ICustomerService customerService;
     @Autowired
     private ICartService cartService;
+
     @PostMapping("")
     public ResponseEntity<?> addToCart(@RequestBody CartDetailDto cartDetailDto) {
         CartDetail cartDetail = new CartDetail();
@@ -57,6 +58,7 @@ public class CartController {
         } else {
             cart.setCustomer(customer.get());
             cartService.save(cart);
+            cartDetail.setPrice(cartDetailDto.getPrice());
             cartDetail.setProduct(product.get());
             cartDetail.setCart(cart);
             cartDetailService.save(cartDetail);
@@ -68,13 +70,14 @@ public class CartController {
     public ResponseEntity<?> getAllCard(@PathVariable("idCustomer") Long id) {
         List<CartDto> cartDtoList = cartDetailService.getAllCart(id);
         Double totalMoney = cartDetailService.getTotalMoneyCart(id);
-        List<Object>objectList=new ArrayList<>();
+        List<Object> objectList = new ArrayList<>();
         objectList.add(cartDtoList);
         objectList.add(totalMoney);
-        return new ResponseEntity<>(objectList,HttpStatus.OK);
+        return new ResponseEntity<>(objectList, HttpStatus.OK);
     }
+
     @PatchMapping("updateQuantity")
-    public ResponseEntity<?>updateQuantity(@RequestBody CartDetailDto cartDetailDto){
+    public ResponseEntity<?> updateQuantity(@RequestBody CartDetailDto cartDetailDto) {
         cartDetailService.updateAmountInCart(cartDetailDto.getQuantity(), cartDetailDto.getIdCartDetail());
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -85,6 +88,16 @@ public class CartController {
         if (!productInfo.isPresent()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(productInfo, HttpStatus.OK);
+        return new ResponseEntity<>(productInfo.get(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{idCartDetail}")
+    public ResponseEntity<?> deleteCartDetailById(@PathVariable Long idCartDetail) {
+        CartDetail cartDetail = cartDetailService.findByIdCartDetail(idCartDetail);
+        if (cartDetail == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+         cartDetailService.deleteByIdCartDetail(idCartDetail);
+        return new ResponseEntity<>(cartDetail, HttpStatus.OK);
     }
 }

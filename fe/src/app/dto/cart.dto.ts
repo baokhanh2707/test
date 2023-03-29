@@ -11,4 +11,5 @@ export interface Cart {
   address?: string;
   nameCustomer?: string;
   idCard?: number;
+
 }

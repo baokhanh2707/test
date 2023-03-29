@@ -16,6 +16,4 @@ export interface Product {
   modelYear?: YearProduct;
   statusProduct?: Status;
   amountExist?: number;
-
-
 }

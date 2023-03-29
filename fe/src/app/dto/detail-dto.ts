@@ -8,4 +8,5 @@ export interface DetailDto {
   price?: number;
   exterior?: string;
   nameYear?: string;
+  amountExist?: number;
 }

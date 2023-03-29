@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TokenService} from '../../service/token/token.service';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
+import {CartService} from '../../service/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -14,9 +15,13 @@ export class HeaderComponent implements OnInit {
   checkLogin = false;
   name: string | null | undefined;
   idAccount: string | null | undefined;
+  itemCount = 0;
+
   constructor(private tokenService: TokenService,
               private router: Router,
-              private toast: ToastrService) { }
+              private toast: ToastrService,
+              private cartService: CartService) {
+  }
 
   ngOnInit(): void {
     if (this.tokenService.getToken()) {
@@ -24,8 +29,12 @@ export class HeaderComponent implements OnInit {
       this.name = this.tokenService.getName();
       this.roles = this.tokenService.getRole();
       this.idAccount = this.tokenService.getIdAccount();
+      this.cartService.getCount().subscribe(data => {
+        this.itemCount = data;
+      });
     }
   }
+
   logOut(): void {
     window.localStorage.clear();
     this.router.navigateByUrl('/').then(() => {
