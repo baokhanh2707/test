@@ -15,10 +15,12 @@ public interface IProductService {
                                          @Param("idYearProduct") String nameYearProduct,
                                          Pageable pageable );
     Page<ProductDto>pageProduct(Pageable pageable);
+    List<Product>getAllProduct();
     ProductInfoById selectProductById(@Param("idProduct") Long idProduct);
     List<ImageByIdDto> selectImageById(@Param("idProduct") Long idProduct);
     List<ProductInType>selectProductByIdType(@Param("idProduct") Long idProduct);
     ProductHomeOne selectProduct();
     Optional<Product>findByIdProduct(Long idProduct);
     Optional<AmountProductDto> getAmountExist(Integer id);
+    void save(Product product);
 }

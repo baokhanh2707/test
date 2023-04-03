@@ -13,6 +13,8 @@ import {ToastrModule} from 'ngx-toastr';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { PaymentsComponent } from './payments/payments.component';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
+import { HistoryComponent } from './history/history.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { PaymentsComponent } from './payments/payments.component';
     DetailComponent,
     CartComponent,
     LoginComponent,
-    PaymentsComponent
+    PaymentsComponent,
+    PaymentSuccessComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,

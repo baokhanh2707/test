@@ -26,7 +26,7 @@ public class ProductController {
     public ResponseEntity<Page<ProductDto>> getAllProduct(@RequestParam(defaultValue = "") String nameTypeProduct,
                                                           @RequestParam(defaultValue = "") String nameStatusProduct,
                                                           @RequestParam(defaultValue = "") String nameYearProduct,
-                                                          @PageableDefault(size = 6) Pageable pageable
+                                                          @PageableDefault(size = 4) Pageable pageable
     ) {
         Page<ProductDto> productPage;
         if (nameTypeProduct != null && nameStatusProduct != null && nameStatusProduct != null) {

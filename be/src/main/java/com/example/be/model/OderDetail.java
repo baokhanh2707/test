@@ -17,7 +17,7 @@ public class OderDetail {
     private Oder oder;
     private boolean flagDelete = false;
     private boolean statusShipping = false;
-    private boolean statusPay = false;
+    private Boolean statusPay = false;
     private Double discount;
     private Double price;
 
@@ -88,11 +88,11 @@ public class OderDetail {
         this.statusShipping = statusShipping;
     }
 
-    public boolean isStatusPay() {
+    public Boolean isStatusPay() {
         return statusPay;
     }
 
-    public void setStatusPay(boolean statusPay) {
+    public void setStatusPay(Boolean statusPay) {
         this.statusPay = statusPay;
     }
 

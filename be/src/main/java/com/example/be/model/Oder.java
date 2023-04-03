@@ -13,7 +13,7 @@ public class Oder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPay;
-    private String codePay;
+    private Integer codePay;
     private String namePay;
     private String addressPay;
     private String phonePay;
@@ -46,11 +46,11 @@ public class Oder {
         this.idPay = idPay;
     }
 
-    public String getCodePay() {
+    public Integer getCodePay() {
         return codePay;
     }
 
-    public void setCodePay(String codePay) {
+    public void setCodePay(Integer codePay) {
         this.codePay = codePay;
     }
 

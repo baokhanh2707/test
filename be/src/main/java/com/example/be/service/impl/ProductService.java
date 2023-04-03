@@ -28,6 +28,11 @@ public class ProductService implements IProductService {
     }
 
     @Override
+    public List<Product> getAllProduct() {
+        return productRepository.findAll();
+    }
+
+    @Override
     public ProductInfoById selectProductById(Long idProduct) {
         return productRepository.selectProductById(idProduct);
     }
@@ -55,5 +60,10 @@ public class ProductService implements IProductService {
     @Override
     public Optional<AmountProductDto> getAmountExist(Integer id) {
         return productRepository.getAmountExist(id);
+    }
+
+    @Override
+    public void save(Product product) {
+        productRepository.save(product);
     }
 }

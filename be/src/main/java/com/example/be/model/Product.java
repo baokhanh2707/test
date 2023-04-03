@@ -18,7 +18,7 @@ public class Product {
     @JoinColumn(name ="model_year_id" )
     //năm sản xuất
     private YearProduct modelYear ;
-    private Integer amountExist;
+    private Long amountExist;
     //động cơ
     private String engine;
     //số dặm
@@ -41,6 +41,7 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<ImageProduct> imageProducts;
     @OneToMany(mappedBy = "product")
+    @JsonBackReference
     public Set<OderDetail> oderDetailSet;
     @OneToMany(mappedBy = "product")
     @JsonBackReference
@@ -81,11 +82,11 @@ public class Product {
         this.nameProduct = nameProduct;
     }
 
-    public Integer getAmountExist() {
+    public Long getAmountExist() {
         return amountExist;
     }
 
-    public void setAmountExist(Integer amountExist) {
+    public void setAmountExist(Long amountExist) {
         this.amountExist = amountExist;
     }
 
