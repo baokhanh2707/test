@@ -42,6 +42,8 @@ export class HomeComponent implements OnInit {
   quantity = 1;
   cartDetail: CartDetail = {};
   cartList: Cart[] = [];
+  // tslint:disable-next-line:ban-types
+  roles: String[] = [];
 
   constructor(private productService: ProductService, private toastrService: ToastrService, private titleService: Title,
               private tokenService: TokenService,
@@ -57,6 +59,8 @@ export class HomeComponent implements OnInit {
     this.getYearProduct();
     this.getTypeProduct();
     this.getProductOneHome();
+    this.roles = this.tokenService.getRole();
+    this.checkLogin = true;
   }
 
   addToCart(idProduct: number | undefined, price: number | undefined): void {
@@ -72,6 +76,8 @@ export class HomeComponent implements OnInit {
           this.cartService.setCount(this.cartList.length);
         });
         this.toastrService.success('Thêm vào giỏ hàng thành công.', 'Thông báo.');
+        this.router.navigateByUrl('/cart');
+
       });
 
     } else {
@@ -89,6 +95,18 @@ export class HomeComponent implements OnInit {
     });
   }
 
+
+  // tslint:disable-next-line:typedef
+  isAdmin() {
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < this.roles.length; i++) {
+      if (this.roles[i] === 'ADMIN') {
+        return true;
+      }
+    }
+    return false;
+  }
+
   getAllProduct(typeProduct: string, statusProduct: string, yearProduct: string, size: number, flag: boolean): void {
     if (!flag) {
       this.size = 6;
@@ -99,7 +117,6 @@ export class HomeComponent implements OnInit {
     this.productService.getAllProduct(typeProduct, statusProduct, yearProduct, size).subscribe(data => {
       if (data.content.length !== null) {
         this.productPage = data.content;
-        console.log(data);
         this.first = data.first;
         this.last = data.last;
         this.size = data.size;

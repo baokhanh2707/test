@@ -22,4 +22,14 @@ public class CustomerController {
         List<CustomerDto> customerInfoList = customerService.getCustomer(id);
         return new ResponseEntity<>(customerInfoList, HttpStatus.OK);
     }
+
+    @GetMapping("info/{id}")
+    public ResponseEntity<?>getAllCustomer(@PathVariable("id") Long id){
+        CustomerDto infoCustomer = customerService.getAllCustomer(id);
+        if (infoCustomer == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(infoCustomer, HttpStatus.OK);
+
+    }
 }

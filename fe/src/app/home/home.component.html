@@ -1,28 +1,26 @@
 <form>
   <div>
     <div class="row" style="margin: 0; background-color: black">
-      <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-          <div class="carousel-item active">
+          <div class="carousel-item active" data-bs-interval="1000">
             <img src="https://www.alainclass.com/wp-content/uploads/2020/03/012.jpg" class="d-block w-100" alt="...">
           </div>
-          <div class="carousel-item">
+          <div class="carousel-item" data-bs-interval="2000">
             <img src="https://www.alainclass.com/wp-content/uploads/2015/09/DSC00276-1.jpg" class="d-block w-100"
                  alt="...">
           </div>
-          <div class="carousel-item">
+          <div class="carousel-item" data-bs-interval="2000">
             <img src="https://www.alainclass.com/wp-content/uploads/2020/03/cover-size-compress.jpg"
                  class="d-block w-100"
                  alt="...">
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching"
-                data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching"
-                data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
@@ -93,7 +91,7 @@
               <div><a [routerLink]="['/detail',data.idProduct]" class="btn btn-outline-primary">Chi tiết sản
                 phẩm</a></div>
             </div>
-            <div style="background-color: black"><button style="margin-bottom: 10px" (click)="addToCart(data.idProduct,data.price)" type="button" class="btn btn-outline-danger btn-lg btn-block" >
+            <div *ngIf="!isAdmin()" style="background-color: black"><button  style="margin-bottom: 10px" (click)="addToCart(data.idProduct,data.price);scroll()" type="button" class="btn btn-outline-danger btn-lg btn-block" >
               Thêm vào giỏ hàng</button></div>
           </div>
         </div>

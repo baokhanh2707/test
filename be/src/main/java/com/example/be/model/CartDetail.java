@@ -1,5 +1,6 @@
 package com.example.be.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Where;
 
@@ -20,8 +21,10 @@ public class CartDetail {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "modify_date")
     private Date modifyDate;
+    @JsonIgnore
     @ManyToOne
     private Product product;
+    @JsonIgnore
     @ManyToOne
     private Cart cart;
     @Column(columnDefinition = "bit")

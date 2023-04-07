@@ -11,4 +11,7 @@ URL_CUSTOMER = 'http://localhost:8080/api/public/customers';
   getCustomer(idCustomer: number): Observable<any> {
     return this.httpClient.get(this.URL_CUSTOMER + '/' + idCustomer);
   }
+  getAllCustomer(idCustomer: number): Observable<any> {
+    return this.httpClient.get(this.URL_CUSTOMER + '/info/' + idCustomer);
+  }
 }

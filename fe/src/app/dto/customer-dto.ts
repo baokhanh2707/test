@@ -3,4 +3,6 @@ export interface CustomerDto {
   email?: string;
   address?: string;
   phoneNumber?: string;
+  birthday?: string;
+  url?: string;
 }

@@ -26,11 +26,7 @@ public class SecurityController {
     @Autowired
     private JwtProvider jwtProvider;
     @Autowired
-    private IAccountService iAccountService;
-    @Autowired
     private AuthenticationManager authenticationManager;
-    @Autowired
-    private JwtTokenFilter jwtTokenFilter;
     @Autowired
     private CustomerService customerService;
 

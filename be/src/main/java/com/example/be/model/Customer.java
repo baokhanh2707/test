@@ -16,6 +16,8 @@ public class Customer {
     private String birthday;
     private String address;
     private String email;
+    @Column(length = 10000)
+    private String url;
     @OneToOne()
     private Account account;
     @OneToMany(mappedBy = "customer")
@@ -94,5 +96,13 @@ public class Customer {
 
     public void setOderSet(Set<Oder> oderSet) {
         this.oderSet = oderSet;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

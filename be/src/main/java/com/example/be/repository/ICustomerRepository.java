@@ -19,4 +19,6 @@ public interface ICustomerRepository extends JpaRepository<Customer,Long> {
 
     @Query(value = "select customer.name_customer as nameCustomer ,customer.email as email,customer.address as address,customer.phone_number as phoneNumber from customer where customer.id_customer= :id",nativeQuery = true)
     List<CustomerDto>getCustomer(Long id);
+@Query(value = "select customer.address,customer.birthday,customer.email,customer.name_customer as nameCustomer,customer.phone_number as phoneNumber,customer.url from customer where customer.id_customer= :id",nativeQuery = true)
+    CustomerDto getAllCustomer(Long id);
 }

@@ -10,6 +10,7 @@ import {CartService} from '../service/cart.service';
 import {CartDetail} from '../entity/cart-detail';
 import {Cart} from '../dto/cart.dto';
 import {ToastrService} from 'ngx-toastr';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-detail',
@@ -31,13 +32,14 @@ export class DetailComponent implements OnInit {
   idProduct: string | null | undefined;
 
   constructor(private productService: ProductService, private activatedRoute: ActivatedRoute, private tokenService: TokenService,
-              private cartService: CartService, private toastrService: ToastrService, private router: Router) {
+              private cartService: CartService, private toastrService: ToastrService, private router: Router, private title: Title) {
+    this.title.setTitle('Trang chi tiết');
     this.activatedRoute.paramMap.subscribe(data => {
       this.idProduct = data.get('id');
       {
         this.productService.getAllProductById(Number(this.idProduct)).subscribe(data2 => {
+          console.log(data2);
           this.productDto = data2;
-          console.log(this.productDto);
         });
       }
       this.productService.getAllProductByIdType(Number(this.idProduct)).subscribe(data3 => {
@@ -58,18 +60,18 @@ export class DetailComponent implements OnInit {
 
   addToCart(): void {
     if (this.tokenService.getToken()) {
-      console.log(this.productDto);
       this.checkLogin = true;
       // @ts-ignore
       if (this.quantity >= this.productDto?.amountExist) {
         this.toastrService.error('Số lượng bạn nhập lớn hơn số lượng sản phẩm còn trong kho.');
-
+        this.quantity = 1;
       } else if (this.quantity < 0) {
-        this.toastrService.error('Số lượng bạn nhập phải lớn hơn 0.') ;
+        this.toastrService.error('Số lượng bạn nhập phải lớn hơn 0.');
+        this.quantity = 1;
       } else if (isNaN(this.quantity)) {
         this.toastrService.error('Bạn không được nhập chữ vào đây.');
+        this.quantity = 1;
       } else {
-
         this.cartDetail.quantity = this.quantity;
         this.cartDetail.idProduct = this.productDto?.idProduct;
         this.cartDetail.idCustomer = Number(this.tokenService.getIdCustomer());
@@ -78,7 +80,6 @@ export class DetailComponent implements OnInit {
           this.cartService.getCartByIdCustomer(Number(this.tokenService.getIdCustomer())).subscribe(data => {
             this.cartList = data;
             this.cartService.setCount(this.cartList.length);
-            console.log(this.cartService.setCount(this.cartList.length) + 'bbb');
           });
           this.toastrService.success('Thêm vào giỏ hàng thành công.', 'Thông báo.');
         });

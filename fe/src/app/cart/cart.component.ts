@@ -22,7 +22,7 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService,
               private tokenService: TokenService,
               private toastrService: ToastrService,
-              private title: Title) {
+              private title: Title) {this.title.setTitle('Giỏ hàng');
   }
 
   ngOnInit(): void {
@@ -58,7 +58,6 @@ export class CartComponent implements OnInit {
   }
 
   increase(idCartDetail: number | undefined): void {
-    console.log(this.cartList);
     for (const element of this.cartList) {
       if (element.idCardDetail === idCartDetail) {
         // @ts-ignore

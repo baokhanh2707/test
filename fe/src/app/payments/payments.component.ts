@@ -6,6 +6,7 @@ import {CustomerService} from '../service/customer.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Payment} from '../entity/payment';
 import {Cart} from '../dto/cart.dto';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-payments',
@@ -18,10 +19,12 @@ export class PaymentsComponent implements OnInit {
   payDto: Payment = {};
   sumMoneyAll = 0;
   cartList: Cart[] = [];
+
   constructor(private cartService: CartService,
               private tokenService: TokenService,
               private customerService: CustomerService,
-  ) {
+              private title: Title
+  ) {this.title.setTitle('Thanh toán');
   }
 
   ngOnInit(): void {
@@ -52,16 +55,16 @@ export class PaymentsComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
   getCartList(): void {
     this.idCustomer = Number(this.tokenService.getIdCustomer());
     this.cartService.getCartByIdCustomer(this.idCustomer).subscribe(data => {
       this.cartList = data[0];
-      console.log(data);
       this.sumMoneyAll = data[1];
       render({
         id: '#myPaypalButton',
         currency: 'USD',
-        value: (this.sumMoneyAll / 100000).toFixed(2),
+        value: (this.sumMoneyAll ).toFixed(2),
         onApprove: (details) => {
           this.pay();
           location.href = 'http://localhost:4200/success';

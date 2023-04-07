@@ -26,12 +26,11 @@
 
         <div *ngIf="roles[0]=='ADMIN' && checkLogin" style="margin-right: 50px">
           <div class="dropdown">
-
-            <button  class="btn btn-outline-danger" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-               <i class="fa-sharp fa-solid fa-bars"></i> Thông tin
+            <button class="btn button-css btn-outline-danger" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-sharp fa-solid fa-bars"></i> Thông tin
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" >Thông tin cá nhân</a></li>
+              <li><a (click)="getAllCustomer()" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#info" href="#">Thông tin cá nhân</a></li>
               <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Quản lý nhân viên</a>
               </li>
               <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logout" href="#">Đăng xuất</a></li>
@@ -45,8 +44,8 @@
               <i class="fa-sharp fa-solid fa-bars"></i> Thông tin
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" >Thông tin cá nhân</a></li>
-              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal"> <sup style="color: white; font-weight: bold">{{itemCount}}</sup>Giỏ Hàng</a>
+              <li><a (click)="getAllCustomer()" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#info" href="#">Thông tin cá nhân</a></li>
+              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" routerLink="/history/{{idCustomer}}">Lịch sử mua hàng</a>
               </li>
               <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logout" href="#">Đăng xuất</a></li>
             </ul>
@@ -74,4 +73,32 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="info" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+       <h1> <b>Thông tin cá nhân</b></h1>
+      </div>
+      <div class="modal-body" >
+        <div class="row">
+          <div class="col-4"><div ><img style="height: 250px;width: 100%" src="{{customerInfo.url}}"></div></div>
+          <div class="col-8">
+            <div style="font-size: 20px"> <b>Tên khách hàng :</b> {{customerInfo.nameCustomer}}</div>
+            <br>
+            <div style="font-size: 20px"><b>Ngày sinh:</b> {{customerInfo.birthday}}</div><br>
+            <div style="font-size: 20px"><b>Địa chỉ:</b> {{customerInfo.address}}</div><br>
+            <div style="font-size: 20px"><b>Số điện thoại:</b> {{customerInfo.phoneNumber}}</div><br>
+            <div style="font-size: 20px"><b>Email:</b> {{customerInfo.email}}</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+        <button type="submit" data-bs-dismiss="modal" class="btn btn-danger">Chỉnh sửa </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 

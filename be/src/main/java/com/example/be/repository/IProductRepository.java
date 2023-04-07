@@ -31,7 +31,7 @@ public interface IProductRepository extends JpaRepository<Product, Long> {
             "on product.status_product_id=status_product.id_status_product " +
             "join year_product " +
             "on product.model_year_id=year_product.id_year " +
-            "where product.flag_delete=false group by product.id_product order by product.id_product "
+            "where product.flag_delete=false group by product.id_product order by product.id_product DESC"
             ,
             countQuery = "SELECT product.id_product as idProduct," +
                     "product.name_product as nameProduct," +
@@ -52,7 +52,7 @@ public interface IProductRepository extends JpaRepository<Product, Long> {
                     "on product.status_product_id=status_product.id_status_product " +
                     "join year_product " +
                     "on product.model_year_id=year_product.id_year " +
-                    "where product.flag_delete=false group by product.id_product order by product.id_product",
+                    "where product.flag_delete=false group by product.id_product order by product.id_product DESC",
              nativeQuery = true)
     Page<ProductDto> pageProduct(Pageable pageable);
 
@@ -80,8 +80,8 @@ public interface IProductRepository extends JpaRepository<Product, Long> {
             "where product.flag_delete=false and year_product.name_year like %:nameYearProduct% " +
             "and status_product.name_status_product like %:nameStatusProduct% " +
             "and type_product.name_type_product like %:nameTypeProduct% " +
-            "group by product.id_product order by product.id_product",
-            countQuery = "SELECT product.price as price, product.id_product as idProduct,product.name_product as nameProduct,year_product.id_year as idYear,year_product.name_year as nameYear,image_product.id as id,image_product.url as url,status_product.id_status_product as idStatusProduct,status_product.name_status_product as nameStatusProduct,type_product.id_type_product as idTypeProduct,type_product.name_type_product as nameTypeProduct FROM product join image_product on product.id_product = image_product.product_id_product join type_product on product.type_product_id=type_product.id_type_product join status_product on product.status_product_id=status_product.id_status_product join year_product on product.model_year_id=year_product.id_year where product.flag_delete=false and year_product.name_year like %:nameYearProduct% and status_product.name_status_product like %:nameStatusProduct% and type_product.name_type_product like %:nameTypeProduct% group by product.id_product order by product.id_product "
+            "group by product.id_product order by product.id_product DESC",
+            countQuery = "SELECT product.price as price, product.id_product as idProduct,product.name_product as nameProduct,year_product.id_year as idYear,year_product.name_year as nameYear,image_product.id as id,image_product.url as url,status_product.id_status_product as idStatusProduct,status_product.name_status_product as nameStatusProduct,type_product.id_type_product as idTypeProduct,type_product.name_type_product as nameTypeProduct FROM product join image_product on product.id_product = image_product.product_id_product join type_product on product.type_product_id=type_product.id_type_product join status_product on product.status_product_id=status_product.id_status_product join year_product on product.model_year_id=year_product.id_year where product.flag_delete=false and year_product.name_year like %:nameYearProduct% and status_product.name_status_product like %:nameStatusProduct% and type_product.name_type_product like %:nameTypeProduct% group by product.id_product order by product.id_product DESC"
             , nativeQuery = true)
     Page<ProductDto> pageProductAndSearch(@Param("nameTypeProduct") String nameTypeProduct,
                                           @Param("nameStatusProduct") String nameStatusProduct,

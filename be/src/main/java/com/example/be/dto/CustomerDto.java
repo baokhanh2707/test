@@ -5,5 +5,6 @@ public interface CustomerDto {
     String getEmail();
     String getAddress();
     String getPhoneNumber();
-
+    String getBirthday();
+    String getUrl();
 }

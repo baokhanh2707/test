@@ -28,4 +28,9 @@ public class CustomerService implements ICustomerService {
     public List<CustomerDto> getCustomer(Long id) {
         return customerRepository.getCustomer(id);
     }
+
+    @Override
+    public CustomerDto getAllCustomer(Long id) {
+        return customerRepository.getAllCustomer(id);
+    }
 }

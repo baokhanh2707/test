@@ -11,4 +11,6 @@ public interface ICustomerService {
     Long  findByAccount(String userName);
     Optional<Customer> findByIdCustomer(Long id);
     List<CustomerDto> getCustomer(Long id);
+    CustomerDto getAllCustomer(Long id);
+
 }

@@ -62,7 +62,7 @@
     <div class="col-lg-5 col-md-6 mb-4 mb-lg-0"></div>
     <div class="col-lg-4 col-md-6 mb-4 mb-lg-0" style="margin-left: 65px">
       <!-- Quantity -->
-      <div class="d-flex mb-4" style="max-width: 300px ;text-align: center" *ngIf="checkLogin">
+      <div class="d-flex mb-4" style="max-width: 300px ;text-align: center" *ngIf="roles[0]=='USER' && checkLogin">
         <button class="btn btn-danger px-3 me-2" style="width: 45px;height: 45px"
                 (click)="decrease()" [ngClass]="{'disabled': quantity <= 1}">
           <i class="fas fa-minus"></i>
@@ -82,7 +82,7 @@
     <div class="col-lg-3 col-md-6 mb-4 mb-lg-0"></div>
    <div class="row">
      <div class="col-2"></div>
-     <div class="col-8"><button *ngIf="checkLogin"  (click)="addToCart()" type="button" class="btn btn-outline-danger btn-lg btn-block"
+     <div class="col-8"><button *ngIf="roles[0]=='USER' && checkLogin"  (click)="addToCart()" type="button" class="btn btn-outline-danger btn-lg btn-block"
                                 style="width: 650px;height: 100%; margin-left: 370px ;margin-bottom: 20px">
        Thêm vào giỏ hàng</button></div>
      <div class="col-2"></div>
@@ -96,19 +96,19 @@
   <div class="row" style="margin: 0">
     <div class="col-2" style="background-color: black"></div>
     <div class="col-8" style="background-color: black">
-      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-          <div class="carousel-item active" *ngFor="let data of imageList">
+          <div class="carousel-item active" data-bs-interval="2000" *ngFor="let data of imageList">
             <img height="100%"
                  src="{{data.url}}"
                  class="d-block w-100" alt="...">
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>

@@ -4,6 +4,7 @@ import {CartService} from '../service/cart.service';
 import {OderDto} from '../dto/oder-dto';
 import {OderDetailDto} from '../dto/oder-detail-dto';
 import {OderJson} from '../dto/oder-json';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-history',
@@ -18,7 +19,8 @@ export class HistoryComponent implements OnInit {
   detailPayList: OderDetailDto[] = [];
 
   constructor(private tokenService: TokenService,
-              private cartService: CartService) {
+              private cartService: CartService,
+              private title: Title) {this.title.setTitle('Lịch sử đặt hàng');
   }
 
   ngOnInit(): void {
@@ -29,17 +31,16 @@ export class HistoryComponent implements OnInit {
     this.idCustomer = Number(this.tokenService.getIdCustomer());
     this.cartService.historyPay(this.idCustomer, this.page).subscribe(data => {
       this.historyPayList = data.content;
-      console.log(this.historyPayList);
       this.historyPayJson = data;
     });
   }
 
-  getAllDetailPay(id: number|undefined): void {
+  getAllDetailPay(id: number | undefined): void {
     this.cartService.getHistoryPayDetail(id).subscribe(data => {
       this.detailPayList = data;
-      console.log(this.detailPayList);
     });
   }
+
   gotoPage(pageNumber: number): void {
     this.page = pageNumber;
     this.ngOnInit();
