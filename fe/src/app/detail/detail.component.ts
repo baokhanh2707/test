@@ -82,6 +82,7 @@ export class DetailComponent implements OnInit {
             this.cartService.setCount(this.cartList.length);
           });
           this.toastrService.success('Thêm vào giỏ hàng thành công.', 'Thông báo.');
+          this.router.navigateByUrl('/cart');
         });
       }
     } else {

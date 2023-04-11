@@ -5,7 +5,6 @@ import {ToastrService} from 'ngx-toastr';
 import {Title} from '@angular/platform-browser';
 import {Cart} from '../dto/cart.dto';
 import {CartDetail} from '../entity/cart-detail';
-
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',

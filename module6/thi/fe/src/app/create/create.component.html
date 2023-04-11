@@ -1,0 +1,70 @@
+<form [formGroup]="canCuocCreate" (ngSubmit)="saveCanCuoc()">
+  <div style="margin-top: 30px">
+    <a class="btn btn-primary my-sm-0" routerLink="/">
+      Quay Lại
+    </a>
+    <div style="margin-top: 30px">
+      <h1>Thêm Công Cụ</h1>
+    </div>
+  </div>
+
+  <label>Mã Công Cụ:</label>
+      <div>
+        <label>
+          <input formControlName="maCanCuoc">
+        </label>
+        <div class="text-danger" *ngFor="let validation of validationMessages.maCanCuoc">
+          <div class="error-message"
+               *ngIf="canCuocCreate.get('maCanCuoc')?.hasError(validation.type) && (canCuocCreate.get('maCanCuoc')?.dirty || canCuocCreate.get('maCanCuoc')?.touched)else elseBlock">
+            {{validation.message}}</div>
+        </div>
+      </div>
+  <label>Tên Công Cụ:</label>
+  <div>
+    <label>
+      <input formControlName="tenCanCuoc">
+    </label>
+    <div class="text-danger" *ngFor="let validation of validationMessages.tenCanCuoc">
+      <div class="error-message"
+           *ngIf="canCuocCreate.get('tenCanCuoc')?.hasError(validation.type) && (canCuocCreate.get('tenCanCuoc')?.dirty || canCuocCreate.get('tenCanCuoc')?.touched)else elseBlock">
+        {{validation.message}}</div>
+    </div>
+  </div>
+  <label>Hãng Sản Xuất:</label>
+  <div>
+    <label>
+      <input formControlName="hangSanXuat">
+    </label>
+    <div class="text-danger" *ngFor="let validation of validationMessages.hangSanXuat">
+      <div class="error-message"
+           *ngIf="canCuocCreate.get('hangSanXuat')?.hasError(validation.type) && (canCuocCreate.get('hangSanXuat')?.dirty || canCuocCreate.get('hangSanXuat')?.touched)else elseBlock">
+        {{validation.message}}</div>
+    </div>
+  </div>
+  <label>Số Lượng:</label>
+  <div>
+    <label>
+      <input formControlName="soLuong" type="number">
+    </label>
+    <div class="text-danger" *ngFor="let validation of validationMessages.soLuong">
+      <div class="error-message"
+           *ngIf="canCuocCreate.get('soLuong')?.hasError(validation.type) && (canCuocCreate.get('soLuong')?.dirty || canCuocCreate.get('soLuong')?.touched)else elseBlock">
+        {{validation.message}}</div>
+    </div>
+  </div>
+  <label>Đơn Vị:</label>
+  <div>
+    <label>
+      <input formControlName="donVi">
+    </label>
+    <div class="text-danger" *ngFor="let validation of validationMessages.donVi">
+      <div class="error-message"
+           *ngIf="canCuocCreate.get('donVi')?.hasError(validation.type) && (canCuocCreate.get('donVi')?.dirty || canCuocCreate.get('donVi')?.touched)else elseBlock">
+        {{validation.message}}</div>
+    </div>
+    <ng-template #elseBlock><br></ng-template>
+  </div>
+  <div>
+    <button type="submit" [disabled]="canCuocCreate.invalid" class="btn btn-primary" style="margin-top: 20px">Lưu thông tin</button>
+  </div>
+</form>

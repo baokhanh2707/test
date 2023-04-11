@@ -82,7 +82,7 @@
     <div class="col-lg-3 col-md-6 mb-4 mb-lg-0"></div>
    <div class="row">
      <div class="col-2"></div>
-     <div class="col-8"><button *ngIf="roles[0]=='USER' && checkLogin"  (click)="addToCart()" type="button" class="btn btn-outline-danger btn-lg btn-block"
+     <div class="col-8"><button *ngIf="roles[0]=='USER' && checkLogin"  (click)="addToCart();scroll()" type="button" class="btn btn-outline-danger btn-lg btn-block"
                                 style="width: 650px;height: 100%; margin-left: 370px ;margin-bottom: 20px">
        Thêm vào giỏ hàng</button></div>
      <div class="col-2"></div>

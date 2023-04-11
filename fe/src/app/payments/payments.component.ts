@@ -42,6 +42,7 @@ export class PaymentsComponent implements OnInit {
   getCustomerById(): void {
     this.idCustomer = Number(this.tokenService.getIdCustomer());
     this.customerService.getCustomer(this.idCustomer).subscribe(data => {
+      console.log(data);
       this.formPay.patchValue(data[0]);
     });
   }
